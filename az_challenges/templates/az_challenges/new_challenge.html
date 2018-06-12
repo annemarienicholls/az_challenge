@@ -1,0 +1,13 @@
+{% extends "az_challenges/base.html" %}
+
+{% block content %}
+
+  <p>Add a new challenge:</p>
+  
+  <form action="{% url 'learning_logs:new_challenge' %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">Add Challenge</button>
+  </form>
+
+{% endblock content %} 

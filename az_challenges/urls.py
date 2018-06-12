@@ -14,4 +14,7 @@ urlpatterns = [
     
     # Detail page for a single Challenge
     path('challenges/<int:challenge_id>/', views.challenge, name='challenge'),
+    
+    # Page for adding new Challenge
+    path('new_challenge/', views.new_challenge, name='new_challenge'),
 ]
