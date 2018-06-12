@@ -1,0 +1,22 @@
+{% extends "az_challenges/base.html" %}
+
+{% block content %}
+
+  <p>Challenge: {{challenge }}</p>
+  
+  <p>Members:</p>
+  <ul>
+    {% for member in members %}
+      <li>
+	    {{ member }}
+	  </li>
+    {% empty %}
+      <li>
+        There are no members for this challenge yet.
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %} 
+
+
