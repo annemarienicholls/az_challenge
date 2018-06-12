@@ -1,0 +1,17 @@
+12/06/2016: 
+App purpose - create a place where couples and families can create "A-Z Challenges". These challenges allow people to take turns choosing a different activity starting with each letter of the alphabet, and updating when they completed the activity.
+
+MVP Version 1:
+1a. Create new user account (email, password, name)
+1b. Validate email
+2a. Create new Challenge Group (name, auto generates first activity record)
+2b. Change Challenge Group name
+2c. Manage Challege Member names
+3a. Select Activity Owner
+3b. Input Activity Details
+3c. Mark Activity as Complete (date, auto generates next activity record)
+
+To follow:
+- Invite Challenge Members to join group via email (can edit Activity record)
+- Invite friends to view Challenge via email (can view Activity records)
+- Comment on activities (own challege and friend's challenges)

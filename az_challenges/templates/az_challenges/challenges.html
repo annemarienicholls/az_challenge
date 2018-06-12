@@ -1,0 +1,16 @@
+{% extends "az_challenges/base.html" %}
+
+{% block content %}
+
+  <p>Challenges</p>
+  
+  <ul>
+    {% for challenge in challenges %}
+      <li>{{ challenge }}</li>
+    {% empty %}
+      <li>No challenges have been added yet.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %} 
+
