@@ -5,9 +5,11 @@ class ChallengeGroup(models.Model):
 	name = models.CharField(max_length=200)
 	date_added = models.DateTimeField(auto_now_add=True)
 	
+	
 	def __str__(self):
 		"""Return a string representation of the model."""
 		return self.name
+		
 
 class Member(models.Model):
 	"""People who are in the Challenge Group."""

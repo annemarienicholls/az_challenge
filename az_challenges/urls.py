@@ -12,5 +12,6 @@ urlpatterns = [
     # Show all Challenge Groups
     path('challenges/', views.challenges, name='challenges'),
     
-
+    # Detail page for a single Challenge
+    path('challenges/<int:challenge_id>/', views.challenge, name='challenge'),
 ]
