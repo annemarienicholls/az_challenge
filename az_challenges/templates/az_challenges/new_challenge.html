@@ -4,7 +4,7 @@
 
   <p>Add a new challenge:</p>
   
-  <form action="{% url 'learning_logs:new_challenge' %}" method='post'>
+  <form action="{% url 'az_challenges:new_challenge' %}" method='post'>
     {% csrf_token %}
     {{ form.as_p }}
     <button name="submit">Add Challenge</button>
