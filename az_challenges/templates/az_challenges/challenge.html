@@ -11,7 +11,7 @@
   <ul>
     {% for member in members %}
       <li>
-	    {{ member }}
+	    {{ member }} - <a href="{% url 'az_challenges:edit_member' member.id %}">Edit</a>
 	  </li>
     {% empty %}
       <li>

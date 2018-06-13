@@ -21,4 +21,7 @@ urlpatterns = [
     # Page for adding a new member.
     path('new_member/<int:challenge_id>/', views.new_member, name='new_member'),
     
+    # Page for editing an existing member.
+    path('edit_member/<int:member_id>/', views.edit_member, name='edit_member'),
+    
 ]
