@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from .models import ChallengeGroup
-from .forms import ChallengeForm
+from .forms import ChallengeForm, MemberForm
 
 def index(request):
 	"""The homepage for A-Z Challenges"""
@@ -23,7 +23,7 @@ def challenge(request, challenge_id):
 	return render(request, 'az_challenges/challenge.html', context)
 
 def new_challenge(request):
-	"""Add a new Challnge Group."""
+	"""Add a new Challenge Group."""
 	if request.method != 'POST':
 		# No data submitted; create a blank form.
 		form = ChallengeForm()
@@ -36,3 +36,24 @@ def new_challenge(request):
 			
 	context = {'form': form}
 	return render(request, 'az_challenges/new_challenge.html', context)
+
+
+
+def new_member(request, challenge_id):
+	"""Add a new member to a challenge"""
+	challenge = ChallengeGroup.objects.get(id=challenge_id)
+	
+	if request.method != 'POST':
+		# No data submitted; create a blank form.
+		form = MemberForm()
+	else:
+		# POST data submitted; process data
+		form = MemberForm(data=request.POST)
+		if form.is_valid():
+			new_member = form.save(commit=False)
+			new_member.challenge_group = challenge
+			new_member.save()
+			return HttpResponseRedirect(reverse('az_challenges:challenge', args=[challenge_id]))
+			
+	context = {'challenge': challenge, 'form': form}
+	return render(request, 'az_challenges/new_member.html', context)

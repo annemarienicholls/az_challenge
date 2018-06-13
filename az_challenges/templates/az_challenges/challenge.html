@@ -5,6 +5,9 @@
   <p>Challenge: {{challenge }}</p>
   
   <p>Members:</p>
+  <p>
+      <a href="{% url 'az_challenges:new_member' challenge.id %}">Add New Member</a>
+  </p>
   <ul>
     {% for member in members %}
       <li>
