@@ -1,0 +1,14 @@
+{% extends "az_challenges/base.html" %}
+
+{% block content %}
+
+  <p><a href="{% url 'az_challenges:challenge' challenge.id %}">{{ challenge }}</a></p>
+  
+  <p>Add a new member to the Challenge:</p>
+  <form action="{% url 'az_challenges:new_member' challenge.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name='submit'>Add Member</button>
+  </form>
+
+{% endblock content %} 
