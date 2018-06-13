@@ -1,20 +1,24 @@
 {% extends "az_challenges/base.html" %}
 
+{% block header %}
+  <h1>Your Challenges</h1>
+{% endblock header %}
+
 {% block content %}
 
-  <p>Challenges</p>
-  
   <ul>
     {% for challenge in challenges %}
       <li>
-		  <a href="{% url 'az_challenges:challenge' challenge.id %}">{{ challenge }}</a>
+		  <h3>
+		    <a href="{% url 'az_challenges:challenge' challenge.id %}">{{ challenge }}</a>
+		  </h3>
 	  </li>
     {% empty %}
       <li>No challenges have been added yet.</li>
     {% endfor %}
   </ul>
   
-  <a href="{% url 'az_challenges:new_challenge' %}">Add a new Challenge:</a>
+  <h3><a href="{% url 'az_challenges:new_challenge' %}">Add a new Challenge:</a></h3>
 
 {% endblock content %} 
 

@@ -1,25 +1,23 @@
 {% extends "az_challenges/base.html" %}
 
-{% block content %}
+{% block header %}
+  <h2>{{ challenge }}</h2>
+{% endblock header %}
 
-  <p>Challenge: {{challenge }}</p>
-  
-  <p>Members:</p>
+{% block content %}
+    <div class="list-group">
+      {% for member in members %}
+        <a href="{% url 'az_challenges:edit_member' member.id %}" class="list-group-item">{{ member }}</a>
+      {% empty %}
+        <p>There are no challenge members yet.</p>
+      {% endfor %}
+    </div>
+
   <p>
       <a href="{% url 'az_challenges:new_member' challenge.id %}">Add New Member</a>
   </p>
-  <ul>
-    {% for member in members %}
-      <li>
-	    {{ member }} - <a href="{% url 'az_challenges:edit_member' member.id %}">Edit</a>
-	  </li>
-    {% empty %}
-      <li>
-        There are no members for this challenge yet.
-      </li>
-    {% endfor %}
-  </ul>
 
 {% endblock content %} 
+
 
 

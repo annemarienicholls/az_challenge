@@ -1,5 +1,15 @@
 {% extends "az_challenges/base.html" %}
 
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Take the A-Z Challenge!</h1>  
+  </div>
+{% endblock header %}
+
 {% block content %}
-  <p>Go through the alphabet and pick a challenge per letter!</p>
+  <h2>
+    <a href="{% url 'users:register' %}">Create an account</a> to create your own
+      challenge and decide what activities you will do for each letter of the
+      alphabet.
+  </h2>
 {% endblock content %} 

@@ -1,13 +1,23 @@
 {% extends "az_challenges/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Create a new challenge.</h2>
+
+{% endblock header %}
 
 {% block content %}
-
-  <p>Add a new challenge:</p>
   
-  <form action="{% url 'az_challenges:new_challenge' %}" method='post'>
+  <form method="post" action="{% url 'az_challenges:new_challenge' %}" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button name="submit">Add Challenge</button>
+    {% bootstrap_form form %}
+    
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Add Challenge</button>
+    {% endbuttons %}
+    
   </form>
 
 {% endblock content %} 
+
+
