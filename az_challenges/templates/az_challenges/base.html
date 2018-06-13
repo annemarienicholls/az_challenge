@@ -1,6 +1,13 @@
 <p>
   <a href="{% url 'az_challenges:index' %}">The A-Z Challenge</a> - 
-  <a href="{% url 'az_challenges:challenges' %}">Challenges</a>
+  <a href="{% url 'az_challenges:challenges' %}">Challenges</a> -
+  {% if user.is_authenticated %}
+    Hello, {{ user.username }}.
+    <a href="{% url 'users:logout' %}">Log Out</a>
+  {% else %}
+    <a href="{% url 'users:login' %}">Log In</a>
+    <a href="{% url 'users:register' %}">Register</a>
+  {% endif %}
 </p>
 
 {% block content %}{% endblock content %}

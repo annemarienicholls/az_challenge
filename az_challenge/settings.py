@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # My apps
     'az_challenges',
+    'users',
 ]
 
 MIDDLEWARE = [

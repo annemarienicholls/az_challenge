@@ -1,0 +1,15 @@
+{% extends "az_challenges/base.html" %}
+
+{% block content %}
+
+ 
+  <form method="post" action="{% url 'users:register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button name="submit">Register</button>
+    <input type="hidden" name="next" value="{% url 'az_challenges:index' %}" />
+  </form>
+
+{% endblock content %} 
+
