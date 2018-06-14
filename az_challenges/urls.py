@@ -24,4 +24,10 @@ urlpatterns = [
     # Page for editing an existing member.
     path('edit_member/<int:member_id>/', views.edit_member, name='edit_member'),
     
+    # Page for adding a new activity.
+    path('new_activity/<int:challenge_id>/', views.new_activity, name='new_activity'),
+    
+    # Page for editing an existing activity.
+    path('edit_activity/<int:activity_id>/', views.edit_activity, name='edit_activity'),
+    
 ]

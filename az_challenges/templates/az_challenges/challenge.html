@@ -16,6 +16,19 @@
   <p>
       <a href="{% url 'az_challenges:new_member' challenge.id %}">Add New Member</a>
   </p>
+  
+  
+    <div class="list-group">
+      {% for activity in activities %}
+        <a href="{% url 'az_challenges:edit_activity' activity.id %}" class="list-group-item">{{ activity }}</a>
+      {% empty %}
+        <p>There are no activities yet.</p>
+      {% endfor %}
+    </div>
+
+  <p>
+      <a href="{% url 'az_challenges:new_activity' challenge.id %}">Add New Activity</a>
+  </p>
 
 {% endblock content %} 
 

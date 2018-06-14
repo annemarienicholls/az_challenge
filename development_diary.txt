@@ -15,3 +15,7 @@ To follow:
 - Invite Challenge Members to join group via email (can edit Activity record)
 - Invite friends to view Challenge via email (can view Activity records)
 - Comment on activities (own challege and friend's challenges)
+
+14/06/2016:
+- 1a (without email), 2a, 2c done.
+- Decided to defer email-based registration as not out of the box Django, and focus on Challenge and Activity management first.
