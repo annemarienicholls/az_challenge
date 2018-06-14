@@ -44,7 +44,7 @@ def new_challenge(request):
 			new_challenge = form.save(commit=False)
 			new_challenge.owner = request.user
 			new_challenge.save()
-			return HttpResponseRedirect(reverse('az_challenges:challenges'))
+			return HttpResponseRedirect(reverse('az_challenges:challenge', kwargs={'challenge_id': new_challenge.id}))
 			
 	context = {'form': form}
 	return render(request, 'az_challenges/new_challenge.html', context)
@@ -106,11 +106,11 @@ def new_activity(request, challenge_id):
 	if request.method != 'POST':
 		# No data submitted; create a blank form.
 		form = ActivityForm()
-		# form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge_id)
+		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge_id)
 	else:
 		# POST data submitted; process data
 		form = ActivityForm(data=request.POST)
-		# form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge_id)
+		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge_id)
 		if form.is_valid():
 			new_activity = form.save(commit=False)
 			new_activity.challenge_group = challenge
@@ -134,12 +134,35 @@ def edit_activity(request, activity_id):
 	if request.method != 'POST':
 		# Initial request; pre-fill with the current member
 		form = ActivityForm(instance=activity)
+		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge.id)
 	else:
 		# POST data submitted; process data
 		form = ActivityForm(instance=activity, data=request.POST)
+		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge.id)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect(reverse('az_challenges:challenge', args=[challenge.id]))
 			
 	context = {'activity': activity, 'challenge': challenge, 'form': form}
 	return render(request, 'az_challenges/edit_activity.html', context)
+
+@login_required
+def edit_challenge(request, challenge_id):
+	"""Edit an existing challenge to give it a new name"""
+	challenge = ChallengeGroup.objects.get(id=challenge_id)
+	
+	if challenge.owner != request.user:
+		raise Http404
+	
+	if request.method != 'POST':
+		# Initial request; pre-fill with the current challenge
+		form = ChallengeForm(instance=challenge)
+	else:
+		# POST data submitted; process data
+		form = ChallengeForm(instance=challenge, data=request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('az_challenges:challenge', args=[challenge.id]))
+			
+	context = {'challenge': challenge, 'form': form}
+	return render(request, 'az_challenges/edit_challenge.html', context)

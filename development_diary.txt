@@ -17,5 +17,6 @@ To follow:
 - Comment on activities (own challege and friend's challenges)
 
 14/06/2016:
-- 1a (without email), 2a, 2c done.
+- 1a (without email), 2a, 2b, 2c, 3a, 3b done.
 - Decided to defer email-based registration as not out of the box Django, and focus on Challenge and Activity management first.
+- Heroku deploy config

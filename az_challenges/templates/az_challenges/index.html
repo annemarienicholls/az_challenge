@@ -7,9 +7,28 @@
 {% endblock header %}
 
 {% block content %}
-  <h2>
-    <a href="{% url 'users:register' %}">Create an account</a> to create your own
-      challenge and decide what activities you will do for each letter of the
-      alphabet.
-  </h2>
+
+  {% if user.is_authenticated %}
+    <h2>
+      <a href="{% url 'az_challenges:challenges' %}">View your challenges</a> to add
+         team members and complete your activities.
+    </h2>
+      <h2>
+      <a href="{% url 'users:logout' %}">Log Out</a> to exit.
+    </h2>  
+  
+  {% else %}
+
+    <h2>
+      <a href="{% url 'users:register' %}">Create an account</a> to create your own
+        challenge and decide what activities you will do for each letter of the
+        alphabet.
+    </h2>
+      <h2>
+      <a href="{% url 'users:login' %}">Log In</a> if you already have an account
+		  to add your own challenge and activities.
+    </h2>
+    
+  {% endif %}
 {% endblock content %} 
+

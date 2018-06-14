@@ -23,7 +23,6 @@ class ActivityForm(forms.ModelForm):
 					'date_completed': 'Date activity completed'
 				}
 		
-	owner = forms.ModelChoiceField(queryset=Member.objects.filter(challenge_group = 1))
 	date_completed = forms.DateField(required=False, widget=forms.widgets.DateInput(attrs={'type': 'date'}))
 	
 

@@ -1,0 +1,22 @@
+{% extends "az_challenges/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+  <h2>Edit challenge <a href="{% url 'az_challenges:challenge' challenge.id %}">{{ challenge }}</a>.</h2>
+
+{% endblock header %}
+
+
+{% block content %}
+
+  <form method="post" action="{% url 'az_challenges:edit_challenge' challenge.id %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    
+    {% buttons %}
+      <button name="submit" class="btn btn-primary">Save Changes</button>
+    {% endbuttons %}
+  </form>
+
+{% endblock content %} 
+

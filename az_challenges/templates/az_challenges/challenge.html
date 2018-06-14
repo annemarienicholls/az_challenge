@@ -1,10 +1,12 @@
 {% extends "az_challenges/base.html" %}
 
 {% block header %}
-  <h2>{{ challenge }}</h2>
+  <h2>{{ challenge }}</h2> 
+  <small> <a href="{% url 'az_challenges:edit_challenge' challenge.id %}" class="list-group-item">Edit challenge name</a></small>
 {% endblock header %}
 
 {% block content %}
+	<h3>Challenge Members</h3>
     <div class="list-group">
       {% for member in members %}
         <a href="{% url 'az_challenges:edit_member' member.id %}" class="list-group-item">{{ member }}</a>
@@ -19,8 +21,15 @@
   
   
     <div class="list-group">
+      <h3>Challenge Activities</h3>
       {% for activity in activities %}
-        <a href="{% url 'az_challenges:edit_activity' activity.id %}" class="list-group-item">{{ activity }}</a>
+        {% if activity.date_completed %}
+          <a href="{% url 'az_challenges:edit_activity' activity.id %}" class="list-group-item">
+			  {{ activity }} -- Completed: {{ activity.date_completed }}</a>
+			  
+		{% else %}
+		  <a href="{% url 'az_challenges:edit_activity' activity.id %}" class="list-group-item"> {{ activity }} </a>
+		{% endif %}
       {% empty %}
         <p>There are no activities yet.</p>
       {% endfor %}
