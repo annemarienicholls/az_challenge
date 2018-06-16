@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import ChallengeGroup, Member, Activity
+from .models import ChallengeGroup, Member, Activity, ChallengeType, ActivityType
 from .forms import ChallengeForm, MemberForm, ActivityForm
 
 def index(request):
@@ -14,7 +14,8 @@ def index(request):
 def challenges(request):
 	"""Show all Challenges."""
 	challenges = ChallengeGroup.objects.filter(owner=request.user).order_by('date_added')
-	context = {'challenges': challenges}
+	challenge_types = ChallengeType.objects.all()
+	context = {'challenges': challenges, 'challenge_types': challenge_types}
 	return render(request, 'az_challenges/challenges.html', context)
 
 @login_required	
@@ -107,10 +108,12 @@ def new_activity(request, challenge_id):
 		# No data submitted; create a blank form.
 		form = ActivityForm()
 		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge_id)
+		form.fields['activity_type'].queryset = ActivityType.objects.filter(challenge_type = challenge.challenge_type)
 	else:
 		# POST data submitted; process data
 		form = ActivityForm(data=request.POST)
 		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge_id)
+		form.fields['activity_type'].queryset = ActivityType.objects.filter(challenge_type = challenge.challenge_type)
 		if form.is_valid():
 			new_activity = form.save(commit=False)
 			new_activity.challenge_group = challenge
@@ -135,10 +138,12 @@ def edit_activity(request, activity_id):
 		# Initial request; pre-fill with the current member
 		form = ActivityForm(instance=activity)
 		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge.id)
+		form.fields['activity_type'].queryset = ActivityType.objects.filter(challenge_type = challenge.challenge_type)
 	else:
 		# POST data submitted; process data
 		form = ActivityForm(instance=activity, data=request.POST)
 		form.fields['owner'].queryset = Member.objects.filter(challenge_group = challenge.id)
+		form.fields['activity_type'].queryset = ActivityType.objects.filter(challenge_type = challenge.challenge_type)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect(reverse('az_challenges:challenge', args=[challenge.id]))

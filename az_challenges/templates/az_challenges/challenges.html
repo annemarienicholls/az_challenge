@@ -10,7 +10,8 @@
     {% for challenge in challenges %}
       <li>
 		  <h3>
-		    <a href="{% url 'az_challenges:challenge' challenge.id %}">{{ challenge }}</a>
+		    <a href="{% url 'az_challenges:challenge' challenge.id %}">{{ challenge }}</a> 
+		    <small>{{ challenge.challenge_type }}</small>
 		  </h3>
 	  </li>
     {% empty %}
