@@ -17,12 +17,12 @@ class MemberForm(forms.ModelForm):
 class ActivityForm(forms.ModelForm):
 	class Meta:
 		model = Activity
-		fields=['owner', 'activity_type', 'category', 'details', 'date_completed']
-		labels = {'owner': 'Team Member who owns activity', 'activity_type': 'Type of Activity',
-					'category': 'Letter of alphabet', 'details': 'Activity chosen',
-					'date_completed': 'Date activity completed'
+		fields=['owner', 'activity_type', 'details', 'date_completed']
+		labels = {'owner': 'Team Member who owns activity', 'activity_type': 'Letter of Activity (ignore if custom)',
+					'details': 'Activity chosen', 'date_completed': 'Date activity completed'
 				}
 		
 	date_completed = forms.DateField(required=False, widget=forms.widgets.DateInput(attrs={'type': 'date'}))
-	
+
+
 

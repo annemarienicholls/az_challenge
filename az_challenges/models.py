@@ -44,7 +44,6 @@ class Activity(models.Model):
 	challenge_group = models.ForeignKey(ChallengeGroup, on_delete=models.CASCADE)
 	owner = models.ForeignKey(Member, on_delete=models.CASCADE)
 	activity_type = models.ForeignKey(ActivityType, on_delete=models.CASCADE)
-	category = models.CharField(max_length=50)
 	details = models.CharField(max_length=200, blank=True, default='')
 	date_unlocked = models.DateTimeField(auto_now_add=True)
 	date_completed = models.DateField(null=True, blank=True)
